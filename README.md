@@ -43,14 +43,14 @@ make install
 要将CPU profiler安装到可执行文件中，请添加-lprofiler链接到可执行文件。（也可能在运行时使用LD_PRELOAD，例如 在添加 % env LD_PRELOAD="/usr/lib/libprofiler.so" <binary>，但不一定建议这样做。）  
 这并没有打开CPU性能分析; 它只是插入代码。因此，-lprofiler在开发过程中始终始终链接到二进制文件是可行的 。这就是我们在Google所做的。（但是，由于任何用户都可以通过设置环境变量来打开探查器，因此不一定建议将链接profiler的二进制文件安装到运行中的生产系统中。）  
 比如：  
-(1)我这里是将产出设置了prefix，g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a -o test-normal   
-(2)如果是默认的prefix安装在/usr/local/lib/libprofiler.so，g++ src/test-normal/test-normal.cpp -lprofile -o test-normal  
-(3)按顺序执行下列shell  
+#### (1)我这里是将产出设置了prefix，g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a -o test-normal   
+#### (2)如果是默认的prefix安装在/usr/local/lib/libprofiler.so，g++ src/test-normal/test-normal.cpp -lprofile -o test-normal  
+#### (3)按顺序执行下列shell  
    $>export LD_PRELOAD="/usr/local/lib/libprofiler.so"  
    $>g++ src/test-normal/test-normal.cpp -o test-normal  
    $>env CPUPROFILE=test-normal.prof ./test-normal  
    可以看到profiler的文件test-normal.prof  
-(4)$>env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
+#### (4)$>env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
    可以看到profiler的文件test-normal.prof  
 
 
