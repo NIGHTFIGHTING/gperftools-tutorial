@@ -92,6 +92,12 @@ g++ src/test-normal/test-normal.cpp -lprofile -o test-normal
     killall -12 test-server #看见生成的profiler文件test-server.prof.0
 ```
 ```
+    export CPUPROFILE=test-server.prof CPUPROFILESIGNAL="12" LD_PRELOAD="/usr/local/lib/libprofiler.so"
+    g++ src/test-server/test-server.cpp -o test-server
+    killall -12 test-server
+    killall -12 test-server #看见生成的profiler文件test-server.prof.0
+```
+```
 [xiaoju@flliuqi gperftools-tutorial]$ pprof --text test-server test-server.prof.0
 Using local file test-server.
 Using local file test-server.prof.0.
