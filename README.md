@@ -12,7 +12,7 @@ autoreconf --force -v --install
 make   
 make install  
 这里我安装在https://github.com/NIGHTFIGHTING/gperftools-tutorial/output这个目录  
-如果prefix不指定安装的目录lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
+如果prefix不指定安装的目录,lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
 下载好的安装包在https://github.com/NIGHTFIGHTING/gperftools-tutorial/src/  
 ### (2)yum安装
 yum search libunwind查找，然后选择需要的安装  
@@ -26,11 +26,11 @@ tar -xvf  gperftools-2.6.1.tar.gz # 解压
 make   
 make install  
 这里我安装在https://github.com/NIGHTFIGHTING/gperftools-tutorial/output这个目录  
-如果prefix不指定安装的目录lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
+如果prefix不指定安装的目录,lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
 我已经下载好的安装包在https://github.com/NIGHTFIGHTING/gperftools-tutorial/src/  
 ### 2.1问题
-安装时可能出现configure: WARNING: No frame pointers and no libunwind. Using experimental backtrace capturing via libgcc.   
-Expect crashy cpu profiler。是因为没有安装libunwind。在gperftools工具的INSTLL例有说明，64位系统需要安装。使用yum search libunwind查找，  
+安装时可能出现configure: WARNING: No frame pointers and no libunwind. Using experimental backtrace capturing via libgcc.Expect crashy cpu profiler。  
+是因为没有安装libunwind。在gperftools工具的INSTLL例有说明，64位系统需要安装。使用yum search libunwind查找，  
 然后选择需要的安装。  
 
 
