@@ -1,4 +1,4 @@
-# Google Perf Tools使用
+# Google Perf Tools安装以及使用
 代码:https://github.com/gperftools/gperftools  
 使用说明:https://gperftools.github.io/gperftools/cpuprofile.html
 
@@ -18,7 +18,7 @@ make install
 yum search libunwind查找，然后选择需要的安装  
 yum install libunwind-devel.x86_64  
 
-# 2.安装gperftools
+## 2.安装gperftools
 源码安装google-perf-tools/gperftools  
 wget https://github.com/gperftools/gperftools/releases/download/gperftools-2.6.1/gperftools-2.6.1.tar.gz  
 tar -xvf  gperftools-2.6.1.tar.gz # 解压  
@@ -34,3 +34,9 @@ make install
 然后选择需要的安装。  
 
 
+## 3.gperftools使用
+我们在Google使用的CPU分析器。使用它的过程分为三个部分：将库链接到应用程序，运行代码以及分析输出  
+
+### 3.1Linking in the Library  
+要将CPU事件探查器安装到可执行文件中，请添加-lprofiler链接到可执行文件。（也可能在运行时使用LD_PRELOAD，例如 在探查器中添加 % env LD_PRELOAD="/usr/lib/libprofiler.so" <binary>，但不一定建议这样做。）  
+这并没有打开CPU性能分析; 它只是插入代码。因此，-lprofiler在开发过程中始终始终链接到二进制文件是可行的 。这就是我们在Google所做的。（但是，由于任何用户都可以通过设置环境变量来打开探查器，因此不一定建议将探查器链接的二进制文件安装到运行中的生产系统中。）  
