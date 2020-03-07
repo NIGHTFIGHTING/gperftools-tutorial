@@ -55,7 +55,7 @@ g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a 
 ```
 #### (2)如果是默认的prefix安装在/usr/local/lib/libprofiler.so  
 ```
-g++ src/test-normal/test-normal.cpp -lprofile -o test-normal  
+g++ src/test-normal/test-normal.cpp -lprofiler -o test-normal  
 ```
 #### (3)按顺序执行下列shell  
 ```
