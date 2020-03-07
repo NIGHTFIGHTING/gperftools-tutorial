@@ -1,6 +1,8 @@
 # Google Perf Tools安装以及使用
 代码:https://github.com/gperftools/gperftools  
-使用说明:https://gperftools.github.io/gperftools/cpuprofile.html
+使用说明:  
+https://gperftools.github.io/gperftools/cpuprofile.html  
+http://goog-perftools.sourceforge.net/doc/cpu_profiler.html  
 
 ## 1.安装libunwind
 ### (1)源码安装libunwind
@@ -47,8 +49,8 @@ make install
    $>export LD_PRELOAD="/usr/local/lib/libprofiler.so"  
    $>g++ src/test-normal/test-normal.cpp -o test-normal  
    $>env CPUPROFILE=test-normal.prof ./test-normal  
-   可以看到profier的文件test-normal.prof  
+   可以看到profiler的文件test-normal.prof  
 (4)$>env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
-   可以看到profier的文件test-normal.prof  
+   可以看到profiler的文件test-normal.prof  
 
 
