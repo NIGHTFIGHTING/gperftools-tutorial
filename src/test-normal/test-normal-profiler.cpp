@@ -1,3 +1,4 @@
+#include <google/profiler.h> 
 
 void test1() {
     int i = 0;
@@ -17,6 +18,8 @@ void test3() {
 }
 
 int main() {
+     ProfilerStart("test.prof"); // test.prof is the name of profile file
     test3();
+     ProfilerStop();
     return 0;
 }
