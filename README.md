@@ -42,7 +42,7 @@ make install
 比如：  
 (1)我这里是将产出设置了prefix，g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a -o test-normal   
 (2)如果是默认的prefix安装在/usr/local/lib/libprofiler.so，g++ src/test-normal/test-normal.cpp -lprofile -o test-normal  
-(3)
+(3)  
    $>export LD_PRELOAD="/usr/local/lib/libprofiler.so"  
    $>g++ src/test-normal/test-normal.cpp -o test-normal  
    $>env CPUPROFILE=test-normal.prof ./test-normal  
