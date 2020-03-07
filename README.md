@@ -6,6 +6,7 @@ http://goog-perftools.sourceforge.net/doc/cpu_profiler.html
 
 ## 1.安装libunwind
 ### (1)源码安装libunwind
+```
 wget https://github.com/libunwind/libunwind/archive/v0.99.tar.gz  
 tar -xvf v0.99.tar.gz  
 cd libunwind-0.99  
@@ -13,20 +14,25 @@ autoreconf --force -v --install
 ./configure --prefix=gperftools-tutorial/output   
 make   
 make install  
+```
 这里我安装产出在https://github.com/NIGHTFIGHTING/gperftools-tutorial/tree/master/output 这个目录  
 如果prefix不指定安装的目录,lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
 我已经下载好的安装包在https://github.com/NIGHTFIGHTING/gperftools-tutorial/tree/master/gperftools  
 ### (2)yum安装
+```
 yum search libunwind查找，然后选择需要的安装  
 yum install libunwind-devel.x86_64  
+```
 
 ## 2.安装gperftools
 源码安装google-perf-tools/gperftools  
+```
 wget https://github.com/gperftools/gperftools/releases/download/gperftools-2.6.1/gperftools-2.6.1.tar.gz  
 tar -xvf  gperftools-2.6.1.tar.gz # 解压  
 ./configure --prefix=gperftools-tutorial/output   
 make   
 make install  
+```
 这里我安装产出在https://github.com/NIGHTFIGHTING/gperftools-tutorial/tree/master/output 这个目录  
 如果prefix不指定安装的目录,lib会产生在系统/usr/local/lib,头文件在/usr/local/include  
 我已经下载好的安装包在https://github.com/NIGHTFIGHTING/gperftools-tutorial/tree/master/gperftools  
@@ -67,9 +73,9 @@ $>env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./te
 ### 3.2Running the Code  
 #### (1)将环境变量CPUPROFILE定义为将概要文件转储到的文件名。例如，如果您有一个/bin/ls与libprofiler链接的版本 ，则可以运行:  
 ```
-    $> env CPUPROFILE=ls.prof /bin/ls
+    env CPUPROFILE=ls.prof /bin/ls
 ```
     我们可以接着3.1(1)或者3.1(2)或者3.1(3)继续执行  
 ```
-    $> env CPUPROFILE=test-normal.prof ./test-normal
+    env CPUPROFILE=test-normal.prof ./test-normal
 ```
