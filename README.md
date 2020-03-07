@@ -66,7 +66,7 @@ g++ src/test-normal/test-normal.cpp -lprofile -o test-normal
    可以看到profiler的文件test-normal.prof  
 #### (4)  
 ```
-   env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
+   env LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
 ```
    可以看到profiler的文件test-normal.prof  
 
@@ -75,7 +75,6 @@ g++ src/test-normal/test-normal.cpp -lprofile -o test-normal
 ```
     env CPUPROFILE=ls.prof /bin/ls
 ```
-    我们可以接着3.1(1)或者3.1(2)或者3.1(3)继续执行  
 ```
-    env CPUPROFILE=test-normal.prof ./test-normal
+    env CPUPROFILE=test-normal.prof ./test-normal # 我们可以接着3.1(1)或者3.1(2)或者3.1(3)继续执行  
 ```
