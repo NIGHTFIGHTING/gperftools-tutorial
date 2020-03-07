@@ -53,4 +53,8 @@ make install
 #### (4)$>env  LD_PRELOAD=/usr/local/lib/libprofiler.so CPUPROFILE=test-normal.prof ./test-normal  
    可以看到profiler的文件test-normal.prof  
 
-
+### 3.2Running the Code  
+#### (1)将环境变量CPUPROFILE定义为将概要文件转储到的文件名。例如，如果您有一个/bin/ls与libprofiler链接的版本 ，则可以运行:  
+    $> env CPUPROFILE=ls.prof /bin/ls
+    我们可以接着3.1(1)或者3.1(2)或者3.1(3)继续执行  
+    $> env CPUPROFILE=test-normal.prof ./test-normal
