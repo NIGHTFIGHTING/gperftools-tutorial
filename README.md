@@ -85,14 +85,14 @@ g++ src/test-normal/test-normal.cpp -lprofile -o test-normal
     killall -12 chrome # 然后，您可以触发分析以开始
     killall -12 chrome # 然后，在一段时间后，您可以告诉它停止以生成profile文件
 ```
-##### [2.1]  
+##### [2.1]测试test-server  
 ```
     g++ src/test-server/test-server.cpp -lprofiler -o test-server
     env CPUPROFILE=test-server.prof CPUPROFILESIGNAL=12 ./test-server>log 2>&1 &
     killall -12 test-server
     killall -12 test-server #看见生成的profiler文件test-server.prof.0
 ```
-##### [2.2]  
+##### [2.2]测试test-server  
 ```
     export CPUPROFILE=test-server.prof CPUPROFILESIGNAL="12" LD_PRELOAD="/usr/local/lib/libprofiler.so"
     g++ src/test-server/test-server.cpp -o test-server
