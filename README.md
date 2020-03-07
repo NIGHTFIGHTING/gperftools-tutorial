@@ -79,3 +79,26 @@ g++ src/test-normal/test-normal.cpp -lprofile -o test-normal
     env CPUPROFILE=test-normal.prof ./test-normal # 我们可以接着3.1(1)或者3.1(2)或者3.1(3)继续执行  
 ```
 可以看到profiler的文件test-normal.prof  
+#### (2)除了定义环境变量CPUPROFILE外，您还可以定义CPUPROFILESIGNAL。这样可以通过您指定的信号号来控制性能分析。在正常操作下，这个信号编号必须没有被程序中使用过。在内部，它充当由信号触发的开关，默认情况下处于关闭状态。例如，如果您有一个/bin/chrome与libprofiler链接的版本 ，则可以运行:   
+```
+    env CPUPROFILE=chrome.prof CPUPROFILESIGNAL=12 /bin/chrome &
+    killall -12 chrome # 然后，您可以触发分析以开始
+    killall -12 chrome # 然后，在一段时间后，您可以告诉它停止以生成profile文件
+```
+```
+    g++ src/test-server/test-server.cpp -lprofiler -o test-server
+    env CPUPROFILE=test-server.prof CPUPROFILESIGNAL=12 ./test-server>log 2>&1 &
+    killall -12 test-server
+    killall -12 test-server #看见生成的profiler文件test-server.prof.0
+```
+```
+[xiaoju@flliuqi gperftools-tutorial]$ pprof --text test-server test-server.prof.0
+Using local file test-server.
+Using local file test-server.prof.0.
+Total: 1616 samples
+     817  50.6%  50.6%     1616 100.0% loopop
+     799  49.4% 100.0%      799  49.4% loopop_callee
+       0   0.0% 100.0%     1616 100.0% __libc_start_main
+       0   0.0% 100.0%     1616 100.0% _start
+       0   0.0% 100.0%     1616 100.0% main
+```
