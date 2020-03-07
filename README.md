@@ -40,9 +40,10 @@ make install
 ### 3.1Linking in the Library  
 要将CPU事件探查器安装到可执行文件中，请添加-lprofiler链接到可执行文件。（也可能在运行时使用LD_PRELOAD，例如 在探查器中添加 % env LD_PRELOAD="/usr/lib/libprofiler.so" <binary>，但不一定建议这样做。）  
 比如：  
-(1)我这里是将产出设置了prefix，g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a -o test-normal 
+(1)我这里是将产出设置了prefix，g++ src/test-normal/test-normal.cpp -I output/include/ output/lib/libprofiler.a -o test-normal   
 (2)如果是默认的prefix安装在/usr/local/lib/libprofiler.so，g++ src/test-normal/test-normal.cpp -lprofile -o test-normal  
-(3)$>export LD_PRELOAD="/usr/local/lib/libprofiler.so"  
+(3)
+   $>export LD_PRELOAD="/usr/local/lib/libprofiler.so"  
    $>g++ src/test-normal/test-normal.cpp -o test-normal  
    $>env CPUPROFILE=test-normal.prof ./test-normal  
    可以看到profier的文件test-normal.prof  
