@@ -126,6 +126,50 @@ Total: 1616 samples
     #得到profiler文件test-server.prof
 ```
 
+### 3.3Analyzing the Output  
+需要dot为任何图形输出,yum install graphviz,这里有一些调用pprof的方法。这些将在下面更详细地描述。  
+```
+    pprof /bin/ls ls.prof
+                          Enters "interactive" mode
+    pprof --text /bin/ls ls.prof
+                          Outputs one line per procedure
+    pprof --gv /bin/ls ls.prof
+                          Displays annotated call-graph via 'gv'
+    pprof --gv --focus=Mutex /bin/ls ls.prof
+                          Restricts to code paths including a .*Mutex.* entry
+    pprof --gv --focus=Mutex --ignore=string /bin/ls ls.prof
+                          Code paths including Mutex but not string
+    pprof --list=getdir /bin/ls ls.prof
+                          (Per-line) annotated source listing for getdir()
+    pprof --disasm=getdir /bin/ls ls.prof
+                          (Per-PC) annotated disassembly for getdir()
+    pprof --text localhost:1234
+                          Outputs one line per procedure for localhost:1234
+    pprof --callgrind /bin/ls ls.prof
+                       Outputs the call information in callgrind format
+```
+```
+    pprof --pdf test-server test-server.prof > test-server.pdf
+```
+#### (1)节点信息
+查看test-server.pdf，在pprof的各种图形模式中，输出是带有时序信息注释的调用图  
+每个节点代表一个过程。有向边指示呼叫者与被呼叫者的关系。每个节点的格式如下:  
+Class Name  
+Method Name  
+local (percentage)  
+of cumulative (percentage)  
+最后一两行包含时序信息。（分析是通过采样方法完成的，默认情况下，我们每秒进行100次采样。因此，输出中的一个时间单位对应于大约10毫秒的执行时间。）"local"时间是执行指令所花费的时间。直接包含在过程中（以及该过程中内联的任何其他过程中）。“cumulative”时间是“local”时间与在任何被叫者身上花费的时间之和。如果累计时间与当地时间相同，则不会打印。  
+
+
+字段名  | 描述
+---- | -----
+Class Name  | 类名，非类成员函数此项为空
+Method Name  | 函数名
+local (percentage)  | 当前函数直接执行的指令所消耗的CPU时间（包括内联函数）（百分比）
+of cumulative (percentage)  | 当前函数的local时间及其调用的函数的local时间总和（百分比），如果与local相同，则不显示
+
+
+
 
 ## 4.参考
 https://blog.csdn.net/10km/article/details/83820080  
@@ -139,10 +183,4 @@ https://blog.csdn.net/weixin_41376894/article/details/78793321
 https://www.cnblogs.com/lenolix/archive/2010/12/13/1904868.html  
 https://www.kancloud.cn/subin/blog/619133  
 
-字段名  | 描述
----- | -----
-Class Name  | 类名，非类成员函数此项为空
-Method Name  | 函数名
-local (percentage)  | 当前函数直接执行的指令所消耗的CPU时间（包括内联函数）（百分比）
-of cumulative (percentage)  | 当前函数的local时间及其调用的函数的local时间总和（百分比），如果与local相同，则不显示
 
