@@ -142,9 +142,7 @@ https://www.kancloud.cn/subin/blog/619133
 字段名  | 描述
 ---- | -----
 Class Name  | 类名，非类成员函数此项为空
-Method Name  | 函数名 
+Method Name  | 函数名
+local (percentage)  | 当前函数直接执行的指令所消耗的CPU时间（包括内联函数）（百分比）
+of cumulative (percentage)  | 当前函数的local时间及其调用的函数的local时间总和（百分比），如果与local相同，则不显示
 
-字段名  | 描述  | 表头
----- | ----- | ------ 
-单元格内容  | 单元格内容 | 单元格内容
-单元格内容  | 单元格内容 | 单元格内容 
