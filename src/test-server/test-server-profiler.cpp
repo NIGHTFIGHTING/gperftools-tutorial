@@ -11,7 +11,7 @@
 static void gprof_callback(int signum) {
     if (signum == SIGUSR1) {
         printf("Catch the signal ProfilerStart\n");
-        ProfilerStart("bs.prof");
+        ProfilerStart("test-server.prof");
     }
     else if (signum == SIGUSR2) {
         printf("Catch the signal ProfilerStop\n");

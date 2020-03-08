@@ -3,6 +3,7 @@
 使用说明:  
 https://gperftools.github.io/gperftools/cpuprofile.html  
 http://goog-perftools.sourceforge.net/doc/cpu_profiler.html  
+https://github.com/gperftools/gperftools/wiki  
 
 ## 1.安装libunwind
 ### (1)源码安装libunwind
@@ -40,6 +41,8 @@ make install
 安装时可能出现configure: WARNING: No frame pointers and no libunwind. Using experimental backtrace capturing via libgcc.Expect crashy cpu profiler。  
 是因为没有安装libunwind。在gperftools工具的INSTLL例有说明，64位系统需要安装。使用yum search libunwind查找，  
 然后选择需要的安装。  
+### 2.2问题  
+编译时打开了./configure –enable-frame-pointers ，这要求被测试的程序在编译时要加上gcc编译选项，否则某些多线程程序可能会 core:CCFLAGS=-fno-omit-frame-pointer  
 
 
 ## 3.gperftools使用
@@ -110,14 +113,27 @@ Total: 1616 samples
        0   0.0% 100.0%     1616 100.0% _start
        0   0.0% 100.0%     1616 100.0% main
 ```
-### (3)在您的代码中，将您要分析的代码括在对ProfilerStart()和的调用中 ProfilerStop()。（这些函数在<gperftools/profiler.h>中声明。） ProfilerStart()将使用profiler文件名[profile-filename]作为参数。  
+#### (3)在您的代码中，将您要分析的代码括在对ProfilerStart()和的调用中 ProfilerStop()。（这些函数在<gperftools/profiler.h>中声明。） ProfilerStart()将使用profiler文件名[profile-filename]作为参数。  
 ```
     g++ src/test-normal/test-normal-profiler.cpp -lprofiler -o test-normal
-    ./test-normal # 会产生profiler文件test.prof
+    ./test-normal # 会产生profiler文件test-normal.prof
 ```
 ```
     g++ src/test-server/test-server-profiler.cpp -lprofiler -o test-server
     ./test-server >log 2>&1 &
     kill -SIGUSR1 `ps -ef | grep test-server | grep -v grep | awk '{print $2}'`    # 或者使用killall -10 test-server(kill -l可以查看信号的编号)
     kill -SIGUSR2 `ps -ef | grep test-server | grep -v grep | awk '{print $2}'`    # 或者使用killall -12 test-server
+    #得到profiler文件test-server.prof
 ```
+
+
+## 4.参考
+https://blog.csdn.net/10km/article/details/83820080  
+https://blog.csdn.net/dolphin98629/article/details/80932848  
+https://www.jianshu.com/p/8b996698e2e3  
+https://www.iteye.com/blog/xiaotaoge-1565059  
+https://www.cnblogs.com/foxmailed/archive/2012/04/08/2437207.html  
+https://www.cnblogs.com/Lipp/archive/2012/05/28/2521382.html  
+https://www.cnblogs.com/dylancao/p/7683960.html  
+https://blog.csdn.net/weixin_41376894/article/details/78793321  
+https://www.cnblogs.com/lenolix/archive/2010/12/13/1904868.html  
