@@ -110,3 +110,5 @@ Total: 1616 samples
        0   0.0% 100.0%     1616 100.0% _start
        0   0.0% 100.0%     1616 100.0% main
 ```
+### 3.3
+在您的代码中，将您要分析的代码括在对ProfilerStart()和的调用中 ProfilerStop()。（这些函数在<gperftools/profiler.h>中声明。） ProfilerStart()将使用profiler文件名[profile-filename]作为参数。  
