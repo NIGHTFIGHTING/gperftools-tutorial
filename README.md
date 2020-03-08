@@ -1,6 +1,26 @@
-# Google Perf Tools安装以及使用
+# Google Performance Tools安装以及使用
+一个优化的内存管理算法—tcmalloc性能优于malloc。   
+一个用于CPU profile的工具，用于检测程序的性能热点，这个功能和gprof类似。  
+一个用于堆检查工具，用于检测程序在是够有内存泄露，这个功能和valgrind类似。  
+一个用于Heap profile的工具，用于监控程序在执行过程的内存使用情况。  
+```
+1.使用其提供的内存管理函数---TC Malloc:
+       gcc [...] -ltcmalloc  
+2.使用其堆内存检查工具---Heap Checker:
+       gcc [...] -o myprogram -ltcmalloc
+       HEAPCHECK=normal ./myprogram   
+
+3.使用Heap Profiler:
+      gcc [...] -o myprogram -ltcmalloc
+      HEAPPROFILE=/tmp/netheap ./myprogram  
+
+4.使用Cpu Profiler:
+      gcc [...] -o myprogram -lprofiler
+      CPUPROFILE=/tmp/profile ./myprogram
+```
 代码:https://github.com/gperftools/gperftools  
-使用说明:  
+官方文档：
+http://code.google.com/p/google-perftools/wiki/GooglePerformanceTools  
 https://gperftools.github.io/gperftools/cpuprofile.html  
 http://goog-perftools.sourceforge.net/doc/cpu_profiler.html  
 https://github.com/gperftools/gperftools/wiki  
